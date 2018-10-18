@@ -1,0 +1,20 @@
+
+{
+
+  "name": "Executer",
+
+  "version": "0.0.0",
+
+  "description": "---",
+
+  "main": "bot.js",
+
+  "author": "ech",
+
+  "status": "real",
+
+  "prefix": "%",
+
+  "dependencies": {}
+
+}
