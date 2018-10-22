@@ -191,6 +191,40 @@ def remove_quick_response(act_client, raw_message, args, kwargs):
 def my_permissions(act_client, raw_message, args, kwargs):
     return "\n".join([perm[0] if perm[1] else "" for perm in raw_message.channel.permissions_for(raw_message.author)])
 
+def cards_against_humanity(act_client, raw_message, args, kwargs):
+    author_ment = raw_message.author.mention
+    if len(args) == 2:
+        command = args[0]
+        if command == "play":
+            try:
+                card_num = int(args[1])
+            except ValueError:
+                return author_ment + "card must be a number between 0 and 9"
+            if card_num >= 10: return author_ment + "card must be a number between 0 and 9"
+            # Play a card
+            return author_ment + "You played card number: " + str(card_num)
+        if command == "chose":
+            try:
+                player_chosen = int(args[1])
+            except ValueError:
+                return author_ment + "must be an integer"
+            if player_chosen >= 10: return author_ment + "player must be a number between 0 and 9"
+            return author_ment + "You chose player: " + str(player_chosen)
+            # Choose a player
+    elif len(args) == 1:
+        command = args[0]
+        if command == "host":
+            # Create a new game
+            return author_ment + "You have started a game"
+        if command == "join":
+            # Join a game
+            return author_ment + "You joined a game"
+        if command == "close_host":
+            # Close the joining
+            return author_ment + "Nobody can join now anymore"
+        if command == "finish":
+            # Finish the game
+            return author_ment + "You finished the game"
 
 def wiki(act_client, raw_message, args, kwargs):
     return "https://de.wikipedia.org/wiki/" + " ".join(args)
@@ -285,6 +319,7 @@ func_dict = {"dev_help": dev_help,
              "add_quick": add_quick_response,
              "rem_quick": remove_quick_response,
              "mypermissions": my_permissions,
+             "cah": cards_against_humanity,
              "wiki": wiki,
 ##             "inf_blink": infinite_loop,
              "shutup": shutup,
