@@ -7,22 +7,22 @@
 	    "a twelve foot Lenin statue made of led",
 	    "A mutated lemon", 
 	    "A burning goat playing the bagpipes of the apocalyse", 
-	    "The North", 
-	    "Getting crushed by a vending machine", 
-	    "A bitch slap",
-	    "Muhammed the prophet", 
+	    "The North", //original
+	    "Getting crushed by a vending machine", //original
+	    "A bitch slap", //original
+	    "Muhammed the prophet", //original
 	    "Jesus Christ", 
 	    "Brian",
 	    "Mao's golden train",
 	    "Chloroform",
-	    "The true meaning of eastern", 
+	    "The true meaning of christmas", //original
 	    "Hard anal sex until the bed breaks", 
 	    "A suspicious suitcase", 
 	    "Penis [infantile laughing]",
-	    "Dead parents", 
+	    "Dead parents", //original
 	    "The world’s end",
 	    "Scotland", 
-	    "Vladimir Putin travelling on a bear to his vacation on the crimea", 
+	    "Vladimir Putin travelling on a bear to his vacation on the crimea", //original
 	    "An abbey in south France", 
 	    "Malaria", 
 	    "Mistical beings hiding in the woods",
@@ -37,8 +37,39 @@
 	    "Getting born, growning up, leaving school early, drinikng a lot, getting found dead under a bridge", 
 	    "Lizzardpeople",
 	    "Crusifiction",
-	    "Towels"],
+	    "Towels",
+	    "Belgian Kongo",
+	    "A very british insult",
+	    "A fucking ton of cocain",
+	    "An evil wizard with a pipe"
+	    "The Kurds",
+	    "Being the Grand Wizard",
+	    "Farting and walking away", //original
+	    "A micropenis", //original
+	    "strong asian female characters", //original
+	    "Penis breath", //original
+	    "Wanking into a pool of children's tears", //original
+	    "Poor life choices", //original
+	    "Announcing that I am about to cum", //original
+	    "Men", //original
+	    "Child abuse", //original
+	    "Child pornography",
+	    "Sex vacation in Thailand",
+	    "The Russians", //original
+	    "Heartwarming orphans", //original
+	    "Bloody bastard",
+	    "Bicycle repair man",
+	    "Brining a gun to a knife fight",
+	    ],
   "black": ["Chemtrail, Globe Earth, Darwinism ...\n It was all planned by __(1)__",
 	    "Breaking: Hillary Clinton wants to kill __(1)__ and loves __(2)__",
-	    "__(1)__ is the key to __(2)__"]
+	    "__(1)__ is the key to __(2)__"
+	    "You fools, you think the earth is a globe. Oh No! It hast he shape of __(1)__",
+	    "The answer to ultimate question of live, universe and everything is __(1)__",
+	    "I will build a big big wall and I will make __(1)__ pay for it!"
+	    "I believe that men and __(1)__ can live peacefully together."
+	    "I fear no thing, but __(1)__ scares me."
+	    
+
+]
 }
