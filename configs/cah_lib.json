@@ -22,11 +22,11 @@
 	    "The monsters under my bed.",
 	    "Erny and Bernd.", 
 	    "Saxonia.", 
-	    "The Kosovo war."
-	    "Just some dude."
-	    "The jewish world conspiracy."
-	    "The Srebrenica massacre."
-	    "Getting raped by Blue Helmets."
+	    "The Kosovo war.",
+	    "Just some dude.",
+	    "The jewish world conspirac,y."
+	    "The Srebrenica massacre.",
+	    "Getting raped by Blue Helmets.",
 	    "Getting born, growning up, leaving school early, drinikng a lot, getting found dead under a bridge.", 
 	    "Lizzardpeople.",
 	    "Crusifiction.",
@@ -75,7 +75,8 @@
 	    "To go postal.",
 	    "Being drunk while delivering a speech in the european commision.",
 	    "A cabaret artist living in Berlin with a communist kanguroo.",
-	    "Soup coming out of your ears.",],
+	    "Soup coming out of your ears.",
+	   ],
   "black": ["Chemtrail, Globe Earth, Darwinism ...\n It was all planned by __(1)__",
 	    "Breaking: Hillary Clinton wants to kill __(1)__ and loves __(2)__",
 	    "__(1)__ is the key to __(2)__"
@@ -96,6 +97,6 @@
 	    "There is but one way to end this, __(1)__",
 	    "Video games cause children to __(1)__",
 	    "I survived the holocust because of __(1)__",
-	    "Swedish studies show that __(1)__ may be corelated to __(2)__"
+	    "Swedish studies show that __(1)__ may be corelated to __(2)__",
 ]
 }
