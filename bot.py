@@ -4,9 +4,10 @@ import os
 import re
 
 from random import choice
-from functions import func_dict, _not_a_command
-from misc import *
+from functions import func_dict, _not_a_command, message_queue
+from misc import DIR, consts, Queue, emailserver, sense, ReturnMessage, client
 
+YEET_CHECK = r"([Yy]|:regional_indicator_y:)+([Ee]|:regional_indicator_e:){2,}([Tt]|:regional_indicator_t:)+"
 LINK = "https://discordapp.com/oauth2/authorize?client_id=453211202366078977&scope=bot"
 DEFAULT_JSON ="""{
   "auto_responses": {},
@@ -29,8 +30,6 @@ simulation = package["status"] == "simulation"
 
 VROLES = ["Space Premier Schneider", "Geheimdingscht", "NaN"]
 
-client = discord.Client()
-
 def get_quick_responses(server):
     try:
         with open("{0}/server_specifics/{1}.json".format(DIR, server.name), "r") as f:
@@ -45,20 +44,20 @@ def check_dirs():
     res_info = [0, []]
     for server in client.servers:
         if server.name not in listed_servers:
-##            If there is a server, the bot is part of, which is not saved 
+            # If there is a server, the bot is part of, which is not saved
             f = open(DIR + "/server_specifics/" + server.name + ".json", "w")
             f.write(DEFAULT_JSON)
             f.close()
     for server_name in listed_servers:
         if server_name not in [s.name for s in client.servers]:
-##            If a server is saved, the bot is not part of (anymore)
+            # If a server is saved, the bot is not part of (anymore)
             os.remove(DIR + "/server_specifics/" + server_name + ".json")
         else:
             try:                    
                 with open(DIR + "/server_specifics/" + server_name + ".json", "r") as f:
                     json.load(f)
             except json.decoder.JSONDecodeError:
-##            If there is an error of any kind 
+                # If there is an error of any kind
                 print("An error occured at the savefile of the server -{}-: formating safefile".format(server_name[:-5]))
                 res_info[0] = -1
                 res_info[1].append(list(filter(lambda s: s.name == server_name, client.servers))[0])
@@ -73,9 +72,13 @@ async def on_message(message):
 
     if message.author == client.user: return
 
-    print("message detected: {}".format(message.content))
+    try:
+        print("message detected: {}".format(message.content))
+    except UnicodeEncodeError:
+        print("emoji detected")
 
-    if message.content.startswith(PREFIX):
+    if message.content.startswith(PREFIX) or message.content.startswith("cah"):
+
         delete = message.content[1] == "!"
 
         if delete:
@@ -84,7 +87,10 @@ async def on_message(message):
             except discord.errors.Forbidden:
                 pass
 
-        args = message.content[(len(PREFIX) + 1 if delete else len(PREFIX)):].split(" ")
+        if message.content.startswith(PREFIX):
+            args = message.content[(len(PREFIX) + 1 if delete else len(PREFIX)):].split(" ")
+        else:
+            args = message.content.split(" ")
         cmd = args[0]
         print("command is: " + cmd)
         args = args[1:]
@@ -102,25 +108,42 @@ async def on_message(message):
         cmd_func = func_dict.get(cmd, _not_a_command)
         try:
             res = cmd_func(client, message, args, kwargs)
-        except:
+        except Exception:
             raise
+
+        if res is None:
+            pass
+        elif isinstance(res, ReturnMessage):
+            message_queue.add_msg(res)
         else:
-            if type(res) == str:
+            raise TypeError("Return type must be ReturnMessage")
+
+        while message_queue.contains:
+            msg = message_queue.get_msg()
+            answer = msg.content
+            destination = msg.get_dest(message)
+
+            if isinstance(answer, str):
                 if res != "":
-                    print("bot answers: " + res)
+                    print("bot answers: " + answer)
                     if not simulation:
                         try:
-                            await client.send_message(message.channel, res)
+                            await client.send_message(destination, answer)
                         except discord.errors.Forbidden:
                             pass
+            elif isinstance(answer, discord.embeds.Embed):
+                try:
+                    await client.send_message(destination, embed=answer)
+                except discord.errors.Forbidden:
+                    pass
 
     elif message.mention_everyone and message.author.name == "Vulle Gast":
         await client.delete_message(message)
 
     elif message.content.count("?") / max(1, len(message.content)) > .5:
-        await client.send_message(message.channel, "https://davescomputertips.com/wp-content/uploads/2015/08/keyboard-blueprint-640x205.png")
+        await client.send_message(message.channel, "Stop it {} I hate questionmarks!".format(message.author.mention))
     
-    if re.search(r"([Yy]|:regional_indicator_y:)+([Ee]|:regional_indicator_e:){2,}([Tt]|:regional_indicator_t:)+", message.content) is not None:
+    if re.search(YEET_CHECK, message.content) is not None:
         try:
             await client.delete_message(message)
             await client.send_message(message.channel, "<:SEMPERIRATUS:454319373369344000>")
@@ -131,13 +154,12 @@ async def on_message(message):
         quick_responses = get_quick_responses(message.server)
         await client.send_message(message.channel, quick_responses[message.content])
 
-    print(message.server.me, message.mentions)
     if message.server.me in message.mentions:
         await client.send_message(message.channel, "Don't ping me {}".format(message.author.mention))
 
     if V_COMMAND in message.content:
         await client.delete_message(message)
-        #await client.send_message("requesting authorisation type \"Y\" in the next 5 seconds to confirm")
+        # await client.send_message("requesting authorisation type \"Y\" in the next 5 seconds to confirm")
 
         print("Vaporisation requested:")
         server = message.server
@@ -161,7 +183,6 @@ async def on_message(message):
                 if victim.name.lower() in msg.content.lower():
                     del_msg.append(msg)
             print("-", end="", flush=True)
-        # print("\n".join(list(map(lambda m: m.content, del_msg))))
         # Further verifications can come here
         msg_num = len(del_msg)
         print("\n| Deleting messanges")
