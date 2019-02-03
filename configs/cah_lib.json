@@ -1,6 +1,8 @@
 { "white": ["Carl XII of Sweden",
 	    "Mao Zhedong, great leader of the people", 
 	    "Famine",
+	    "Wildfires",
+	    "Deathsticks",
 	    "Bob the Builder", 
 	    "Colectivisation", 
 	    "The means of production", 
@@ -303,8 +305,11 @@
 	    "Not being born",
 	    "Tiny hands",
 	    "Stealing memes",
+	    "A pangender octopus travelling the galaxy in search of love",
 	    "Oblivion gates"],
   "black": ["Chemtrail, Globe Earth, Darwinism ...\n It was all planned by __(1)__.",
+	    "Hey kid, wanna buy some __(1)__."
+	    "You don't want to sell me __(1)__. You will go home and rethink your live."
 	    "Breaking News: Hillary Clinton wants to kill __(1)__ and loves __(2)__.",
 	    "__(1)__ is the key to __(2)__.",
 	    "Statistics show that most people die due to __(1)__."
@@ -352,6 +357,7 @@
  	    "You shall all be __(1)__ in the name of our lord.",
  	    "Monopoly just got now rules, passing go means __(1)__ instead of recieving 200 pounds.",
             "Swedish studies show that __(1)__ may be corelated to __(2)__.",
-            "Vin Diesel eats __(1)__ for breakfast."
+            "Vin Diesel eats __(1)__ for breakfast.",
+	    "Heads, you die. Tales, __(1)__"
 ]
 }
